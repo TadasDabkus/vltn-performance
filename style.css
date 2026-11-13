@@ -1,907 +1,824 @@
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-:root{
-  --lime:#cfff00;
-  --black:#070808;
-  --bone:#f1f0ea;
-  --graphite:#242625;
-  --line:rgba(255,255,255,.15)
+:root {
+    --lime: #cfff00;
+    --black: #070808;
+    --bone: #f1f0ea;
+    --graphite: #242625;
+    --line: rgba(255,255,255,.15);
 }
 
-html{
-  scroll-behavior:smooth
+html {
+    scroll-behavior: smooth;
 }
 
-body{
-  background:var(--black);
-  color:var(--bone);
-  font-family:Inter,Arial,sans-serif;
-  overflow-x:hidden
+body {
+    background: var(--black);
+    color: var(--bone);
+    font-family: Inter, Arial, sans-serif;
+    overflow-x: hidden;
 }
 
-a{
-  text-decoration:none;
-  color:inherit
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-button{
-  font:inherit
+button {
+    font: inherit;
 }
-
 
 /* =========================
    HEADER
 ========================= */
 
-.site-header{
-  height:68px;
-  border-bottom:1px solid rgba(255,255,255,.09);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 6vw;
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  z-index:20;
-  background:rgba(7,8,8,.78);
-  backdrop-filter:blur(12px)
+.site-header {
+    height: 68px;
+    border-bottom: 1px solid rgba(255,255,255,.09);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    background: rgba(7,8,8,.78);
+    backdrop-filter: blur(12px);
 }
 
-.logo{
-  font-weight:900;
-  font-style:italic;
-  font-size:22px;
-  letter-spacing:-2px
+.logo {
+    font-weight: 900;
+    font-style: italic;
+    font-size: 22px;
+    letter-spacing: -2px;
 }
 
-.logo span{
-  font-size:8px;
-  vertical-align:top;
-  margin-left:2px
+.logo span {
+    font-size: 8px;
+    vertical-align: top;
+    margin-left: 2px;
 }
 
-nav{
-  display:flex;
-  gap:46px;
-  font-size:12px
+nav {
+    display: flex;
+    gap: 46px;
+    font-size: 12px;
 }
 
-nav a{
-  opacity:.85;
-  transition:.2s
+nav a {
+    opacity: .85;
+    transition: .2s;
 }
 
-nav a:hover{
-  color:var(--lime)
+nav a:hover {
+    color: var(--lime);
 }
 
-.header-actions{
-  display:flex;
-  align-items:center;
-  gap:20px;
-  font-size:11px
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 11px;
 }
 
-.header-actions button{
-  background:none;
-  border:0;
-  color:var(--bone);
-  cursor:pointer
+.header-actions button {
+    background: none;
+    border: 0;
+    color: var(--bone);
+    cursor: pointer;
 }
 
-.header-actions b{
-  display:inline-grid;
-  place-items:center;
-  background:var(--lime);
-  color:#050505;
-  width:15px;
-  height:15px;
-  border-radius:50%;
-  font-size:8px;
-  margin-left:3px
+.header-actions b {
+    display: inline-grid;
+    place-items: center;
+    background: var(--lime);
+    color: #050505;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    font-size: 8px;
+    margin-left: 3px;
 }
 
-.menu{
-  font-size:15px
+.menu {
+    font-size: 15px;
 }
-
 
 /* =========================
    HERO
 ========================= */
 
-.hero{
-  /*
-    Dabar hero yra aukštesnis.
-    Tai leidžia nuotraukai kvėpuoti ir
-    neatrodyti kaip nukirptam banneriui.
-  */
-  min-height:900px;
-  height:100vh;
-  max-height:1050px;
+.hero {
+    /*
+      Hero išlieka didelis desktop'e,
+      tačiau nebėra priverstinai 100vh.
+      Tai padeda išlaikyti platesnės
+      hero nuotraukos proporcijas.
+    */
+    min-height: 680px;
+    height: min(100vh, 56.25vw);
+    max-height: 900px;
 
-  position:relative;
-  overflow:hidden;
+    position: relative;
+    overflow: hidden;
 
-  display:flex;
-  align-items:center;
+    display: flex;
+    align-items: center;
 }
-
 
 /*
    HERO IMAGE
 
-   Svarbiausias pakeitimas:
-   nuotrauką keliame šiek tiek į viršų,
-   kad sportininko galva nebūtų nukirsta.
-
-   58% -> mažesnis Y procentas = kamera aukščiau.
+   Paliekame cover, nes norime full-width
+   cinematic hero, bet pats hero dabar
+   turi tinkamesnį aukščio santykį.
 */
-.hero-bg{
-  position:absolute;
-  inset:0;
+.hero-bg {
+    position: absolute;
+    inset: 0;
 
-  background-image:url("assets/hero.jpg");
+    background-image: url("assets/hero.jpg");
 
-  background-size:cover;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
 
-  /*
-    Anksčiau buvo center.
-    Dabar vaizdas šiek tiek pakeltas.
-  */
-  background-position:center 42%;
-
-  background-repeat:no-repeat;
-
-  z-index:0;
-
-  /*
-    Švelnus mastelio efektas.
-    Neleidžia kraštams atrodyti per daug
-    "prispaustiems".
-  */
-  transform:scale(1.01);
+    z-index: 0;
 }
 
+.hero-overlay {
+    position: absolute;
+    inset: 0;
 
-/*
-   Tamsus overlay iš kairės.
-   Tekstas tampa aiškus, bet nuotrauka
-   išlieka matoma.
-*/
-.hero-overlay{
-  position:absolute;
-  inset:0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(5,6,6,.92) 0%,
+            rgba(5,6,6,.55) 35%,
+            rgba(5,6,6,.06) 66%,
+            rgba(5,6,6,.15) 100%
+        );
 
-  background:
-    linear-gradient(
-      90deg,
-      rgba(5,6,6,.94) 0%,
-      rgba(5,6,6,.65) 28%,
-      rgba(5,6,6,.20) 55%,
-      rgba(5,6,6,.04) 72%,
-      rgba(5,6,6,.12) 100%
-    );
-
-  z-index:1
+    z-index: 1;
 }
 
+.hero-content {
+    position: relative;
+    z-index: 2;
 
-/* =========================
-   HERO CONTENT
-========================= */
-
-.hero-content{
-  position:relative;
-  z-index:2;
-
-  margin-left:10.5vw;
-
-  width:560px;
-
-  /*
-    Šiek tiek daugiau erdvės viršuje,
-    nes pats hero dabar aukštesnis.
-  */
-  padding-top:20px
+    margin-left: 10.5vw;
+    width: 560px;
+    padding-top: 40px;
 }
 
-.eyebrow{
-  font-size:9px;
-  letter-spacing:3px;
-  font-weight:700;
-  color:var(--bone);
-  margin-bottom:20px
+.eyebrow {
+    font-size: 9px;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color: var(--bone);
+    margin-bottom: 20px;
 }
 
-.hero h1{
-  font-size:clamp(58px,7vw,112px);
-  line-height:.84;
-  letter-spacing:-6px;
-  font-weight:900;
-  font-style:italic;
-  text-transform:uppercase
+.hero h1 {
+    font-size: clamp(58px, 7vw, 112px);
+    line-height: .84;
+    letter-spacing: -6px;
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
 }
 
 .hero h1 em,
 .collection h2 em,
 .campaign h2 em,
 .technology h2 em,
-.about h2 em{
-  font-style:italic;
-  color:var(--lime)
+.about h2 em {
+    font-style: italic;
+    color: var(--lime);
 }
 
-.hero-copy{
-  font-size:14px;
-  line-height:1.5;
-  margin-top:26px;
-  color:#ddd;
-  max-width:330px
+.hero-copy {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: 26px;
+    color: #ddd;
+    max-width: 330px;
 }
 
-.hero-buttons{
-  display:flex;
-  gap:12px;
-  margin-top:28px
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
 }
 
-.btn{
-  display:inline-flex;
-  align-items:center;
-  gap:30px;
-  padding:14px 19px;
-  font-size:11px;
-  font-weight:700;
-  border:1px solid var(--line);
-  transition:.2s
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 30px;
+
+    padding: 14px 19px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    border: 1px solid var(--line);
+
+    transition: .2s;
 }
 
-.btn span{
-  font-size:16px
+.btn span {
+    font-size: 16px;
 }
 
-.btn-primary{
-  background:var(--lime);
-  color:#050505;
-  border-color:var(--lime)
+.btn-primary {
+    background: var(--lime);
+    color: #050505;
+    border-color: var(--lime);
 }
 
-.btn-primary:hover{
-  transform:translateY(-2px)
+.btn-primary:hover {
+    transform: translateY(-2px);
 }
 
-.btn-outline:hover{
-  border-color:var(--bone)
+.btn-outline:hover {
+    border-color: var(--bone);
 }
 
-.hero-tags{
-  display:flex;
-  gap:16px;
-  align-items:center;
-  margin-top:34px;
-  font-size:9px;
-  letter-spacing:3px
+.hero-tags {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+
+    margin-top: 34px;
+
+    font-size: 9px;
+    letter-spacing: 3px;
 }
 
-.hero-tags span:first-child{
-  color:var(--lime);
-  font-size:18px
+.hero-tags span:first-child {
+    color: var(--lime);
+    font-size: 18px;
 }
 
-.hero-tags i{
-  opacity:.35;
-  font-style:normal
+.hero-tags i {
+    opacity: .35;
+    font-style: normal;
 }
 
+.hero-meta {
+    position: absolute;
+    z-index: 2;
 
-/* =========================
-   HERO META
-========================= */
+    right: 7vw;
+    bottom: 14%;
 
-.hero-meta{
-  position:absolute;
-  z-index:2;
-
-  right:7vw;
-  bottom:14%;
-
-  font-size:9px;
-  letter-spacing:3px;
-  line-height:1.8
+    font-size: 9px;
+    letter-spacing: 3px;
+    line-height: 1.8;
 }
 
-.hero-meta strong{
-  color:var(--lime)
+.hero-meta strong {
+    color: var(--lime);
 }
 
-.hero-meta span{
-  display:block;
-  margin-top:18px;
-  color:#aaa;
-  letter-spacing:2px
+.hero-meta span {
+    display: block;
+    margin-top: 18px;
+
+    color: #aaa;
+    letter-spacing: 2px;
 }
 
-.scroll{
-  position:absolute;
-  z-index:3;
-  bottom:20px;
-  left:50%;
-  font-size:20px;
-  opacity:.7
-}
+.scroll {
+    position: absolute;
+    z-index: 3;
 
+    bottom: 20px;
+    left: 50%;
+
+    font-size: 20px;
+    opacity: .7;
+}
 
 /* =========================
    FEATURE BAR
 ========================= */
 
-.feature-bar{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
+.feature-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
 
-  padding:0 6vw
+    padding: 0 6vw;
 }
 
-.feature-bar article{
-  display:flex;
-  gap:20px;
-  align-items:center;
+.feature-bar article {
+    display: flex;
+    gap: 20px;
+    align-items: center;
 
-  padding:30px 28px 30px 0;
+    padding: 30px 28px 30px 0;
 
-  border-right:1px solid var(--line)
+    border-right: 1px solid var(--line);
 }
 
-.feature-bar article:not(:first-child){
-  padding-left:28px
+.feature-bar article:not(:first-child) {
+    padding-left: 28px;
 }
 
-.feature-bar article:last-child{
-  border-right:0
+.feature-bar article:last-child {
+    border-right: 0;
 }
 
-.icon{
-  font-size:30px;
-  width:35px
+.icon {
+    font-size: 30px;
+    width: 35px;
 }
 
-.feature-bar h3{
-  font-size:12px;
-  letter-spacing:.5px
+.feature-bar h3 {
+    font-size: 12px;
+    letter-spacing: .5px;
 }
 
-.feature-bar p{
-  font-size:10px;
-  color:#929292;
-  margin-top:7px
+.feature-bar p {
+    font-size: 10px;
+    color: #929292;
+    margin-top: 7px;
 }
-
 
 /* =========================
    COLLECTION
 ========================= */
 
-.collection{
-  padding:100px 6vw 110px;
+.collection {
+    padding: 100px 6vw 110px;
 
-  display:grid;
-  grid-template-columns:300px 1fr;
+    display: grid;
+    grid-template-columns: 300px 1fr;
 
-  gap:55px
+    gap: 55px;
 }
 
-.series{
-  font-size:10px;
-  letter-spacing:2px;
-  color:#ddd
+.series {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #ddd;
 }
 
-.series span{
-  color:var(--lime);
-  font-weight:800;
-  margin-right:10px
+.series span {
+    color: var(--lime);
+    font-weight: 800;
+    margin-right: 10px;
 }
 
-.series b{
-  color:var(--lime)
+.series b {
+    color: var(--lime);
 }
 
-.collection h2{
-  font-size:58px;
-  line-height:.87;
-  letter-spacing:-3px;
-  font-style:italic;
-  margin:18px 0
+.collection h2 {
+    font-size: 58px;
+    line-height: .87;
+    letter-spacing: -3px;
+    font-style: italic;
+    margin: 18px 0;
 }
 
-.collection-intro>p{
-  font-size:11px;
-  line-height:1.7;
-  color:#999;
-  max-width:285px
+.collection-intro > p {
+    font-size: 11px;
+    line-height: 1.7;
+    color: #999;
+    max-width: 285px;
 }
 
-.text-btn{
-  display:inline-block;
+.text-btn {
+    display: inline-block;
 
-  border:1px solid var(--lime);
-  color:var(--lime);
+    border: 1px solid var(--lime);
+    color: var(--lime);
 
-  padding:12px 15px;
+    padding: 12px 15px;
 
-  font-size:10px;
-  font-weight:700;
+    font-size: 10px;
+    font-weight: 700;
 
-  margin-top:25px;
-
-  transition:.25s
+    margin-top: 25px;
 }
 
-.text-btn:hover{
-  background:var(--lime);
-  color:#050505
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
 }
 
+.product-image {
+    height: 330px;
 
-/* =========================
-   PRODUCTS
-========================= */
-
-.products{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px
-}
-
-.product-image{
-  height:330px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #202221,
-      #111313
+    background: linear-gradient(
+        145deg,
+        #202221,
+        #111313
     );
 
-  overflow:hidden;
+    overflow: hidden;
 
-  display:flex;
-  align-items:center;
-  justify-content:center
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.product-image img{
-  width:100%;
-  height:100%;
+.product-image img {
+    width: 100%;
+    height: 100%;
 
-  object-fit:cover;
+    object-fit: cover;
+    display: block;
 
-  display:block;
-
-  transition:transform .5s
+    transition: transform .5s;
 }
 
-.product:hover img{
-  transform:scale(1.04)
+.product:hover img {
+    transform: scale(1.04);
 }
 
-.product-info{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
+.product-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
 
-  padding:12px 2px
+    padding: 12px 2px;
 }
 
-.product-info h3{
-  font-size:11px
+.product-info h3 {
+    font-size: 11px;
 }
 
-.product-info p{
-  font-size:8px;
-  color:#777;
-  margin-top:5px
+.product-info p {
+    font-size: 8px;
+    color: #777;
+    margin-top: 5px;
 }
 
-.product-info strong{
-  font-size:9px;
-  white-space:nowrap
+.product-info strong {
+    font-size: 9px;
+    white-space: nowrap;
 }
-
 
 /* =========================
    CAMPAIGN
 ========================= */
 
-.campaign{
-  margin:0 6vw 110px;
+.campaign {
+    margin: 0 6vw 110px;
 
-  min-height:560px;
+    min-height: 560px;
 
-  background:#111;
+    background: #111;
 
-  display:grid;
+    display: grid;
+    grid-template-columns: 1.35fr .65fr;
 
-  grid-template-columns:1.35fr .65fr;
-
-  overflow:hidden
+    overflow: hidden;
 }
 
-.campaign-image{
-  min-height:560px;
-
-  position:relative;
-  overflow:hidden
+.campaign-image {
+    min-height: 560px;
 }
 
-.campaign-image img{
-  width:100%;
-  height:100%;
+.campaign-image img {
+    width: 100%;
+    height: 100%;
 
-  object-fit:cover;
+    object-fit: cover;
+    object-position: center;
 
-  /*
-    Šiek tiek geresnis crop
-    kampanijos nuotraukai.
-  */
-  object-position:center center;
-
-  display:block;
-
-  transition:transform .8s ease
+    display: block;
 }
 
-.campaign:hover .campaign-image img{
-  transform:scale(1.025)
+.campaign-copy {
+    padding: 80px 60px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.campaign-copy{
-  padding:80px 60px;
-
-  display:flex;
-  flex-direction:column;
-  justify-content:center
-}
-
-.lime{
-  color:var(--lime)
+.lime {
+    color: var(--lime);
 }
 
 .campaign h2,
 .technology h2,
-.about h2{
-  font-size:58px;
-  line-height:.9;
-  letter-spacing:-3px;
-  font-style:italic;
-  margin-bottom:22px
+.about h2 {
+    font-size: 58px;
+    line-height: .9;
+    letter-spacing: -3px;
+    font-style: italic;
+    margin-bottom: 22px;
 }
 
-.campaign-copy>p:not(.eyebrow){
-  color:#999;
-  font-size:12px;
-  line-height:1.7;
-  max-width:360px;
-  margin-bottom:30px
-}
+.campaign-copy > p:not(.eyebrow) {
+    color: #999;
+    font-size: 12px;
+    line-height: 1.7;
 
+    max-width: 360px;
+
+    margin-bottom: 30px;
+}
 
 /* =========================
    TECHNOLOGY
 ========================= */
 
-.technology{
-  padding:100px 6vw;
+.technology {
+    padding: 100px 6vw;
 
-  display:grid;
-  grid-template-columns:1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 
-  gap:100px;
+    gap: 100px;
 
-  border-top:1px solid var(--line)
+    border-top: 1px solid var(--line);
 }
 
-.technology h2{
-  font-size:70px
+.technology h2 {
+    font-size: 70px;
 }
 
-.tech-grid{
-  display:grid;
-  grid-template-columns:1fr;
+.tech-grid {
+    display: grid;
+    grid-template-columns: 1fr;
 
-  gap:1px;
+    gap: 1px;
 
-  background:var(--line)
+    background: var(--line);
 }
 
-.tech-grid article{
-  background:var(--black);
-  padding:35px;
-
-  transition:
-    background .3s,
-    transform .3s
+.tech-grid article {
+    background: var(--black);
+    padding: 35px;
 }
 
-.tech-grid article:hover{
-  background:#0c0e0e;
-  transform:translateX(5px)
+.tech-grid span {
+    color: var(--lime);
+    font-size: 10px;
 }
 
-.tech-grid span{
-  color:var(--lime);
-  font-size:10px
+.tech-grid h3 {
+    font-size: 14px;
+    margin: 20px 0 8px;
 }
 
-.tech-grid h3{
-  font-size:14px;
-  margin:20px 0 8px
+.tech-grid p {
+    font-size: 11px;
+    color: #888;
+    line-height: 1.7;
+    max-width: 420px;
 }
-
-.tech-grid p{
-  font-size:11px;
-  color:#888;
-  line-height:1.7;
-  max-width:420px
-}
-
 
 /* =========================
    ABOUT
 ========================= */
 
-.about{
-  padding:120px 6vw;
+.about {
+    padding: 120px 6vw;
 
-  border-top:1px solid var(--line);
+    border-top: 1px solid var(--line);
 
-  min-height:550px
+    min-height: 550px;
 }
 
-.about h2{
-  font-size:90px;
-  margin-top:40px
+.about h2 {
+    font-size: 90px;
+    margin-top: 40px;
 }
 
-.about>p:last-child{
-  font-size:12px;
-  color:#777;
-  max-width:420px;
-  margin-top:30px;
-  line-height:1.8
-}
+.about > p:last-child {
+    font-size: 12px;
+    color: #777;
 
+    max-width: 420px;
+
+    margin-top: 30px;
+
+    line-height: 1.8;
+}
 
 /* =========================
    FOOTER
 ========================= */
 
-footer{
-  border-top:1px solid var(--line);
+footer {
+    border-top: 1px solid var(--line);
 
-  padding:28px 6vw;
+    padding: 28px 6vw;
 
-  display:flex;
-  justify-content:space-between;
+    display: flex;
+    justify-content: space-between;
 
-  font-size:8px;
-  letter-spacing:2px;
-  color:#777
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: #777;
 }
-
 
 /* =========================
    TABLET
 ========================= */
 
-@media(max-width:900px){
+@media (max-width: 900px) {
 
-  .site-header{
-    padding:0 5vw
-  }
+    .site-header {
+        padding: 0 5vw;
+    }
 
-  nav{
-    display:none
-  }
+    nav {
+        display: none;
+    }
 
-  /*
-    Hero aukštesnis ir planšetėje.
-  */
-  .hero{
-    min-height:800px;
-    height:100vh
-  }
+    .hero {
+        min-height: 760px;
+        height: 100vh;
+    }
 
-  .hero-content{
-    margin-left:7vw;
-    width:75%;
-    padding-top:50px
-  }
+    .hero-content {
+        margin-left: 7vw;
+        width: 75%;
+        padding-top: 50px;
+    }
 
-  .hero h1{
-    font-size:62px
-  }
+    .hero h1 {
+        font-size: 62px;
+    }
 
-  .hero-bg{
     /*
-      Mobiliai / tablet:
-      sportininką šiek tiek perkeliame
-      į dešinę ir aukščiau.
+       Mobile/tablet nuotraukai leidžiame
+       šiek tiek pasislinkti į dešinę,
+       kad žmogus būtų geriau matomas.
     */
-    background-position:60% 40%
-  }
+    .hero-bg {
+        background-position: 58% center;
+    }
 
-  .hero-overlay{
-    background:
-      linear-gradient(
-        90deg,
-        rgba(5,6,6,.9),
-        rgba(5,6,6,.35) 75%
-      )
-  }
+    .hero-overlay {
+        background:
+            linear-gradient(
+                90deg,
+                rgba(5,6,6,.9),
+                rgba(5,6,6,.35) 75%
+            );
+    }
 
-  .feature-bar{
-    grid-template-columns:1fr 1fr
-  }
+    .feature-bar {
+        grid-template-columns: 1fr 1fr;
+    }
 
-  .feature-bar article:nth-child(2){
-    border-right:0
-  }
+    .feature-bar article:nth-child(2) {
+        border-right: 0;
+    }
 
-  .collection{
-    grid-template-columns:1fr;
-    gap:35px
-  }
+    .collection {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
 
-  .products{
-    grid-template-columns:1fr 1fr
-  }
+    .products {
+        grid-template-columns: 1fr 1fr;
+    }
 
-  .product-image{
-    height:280px
-  }
+    .product-image {
+        height: 280px;
+    }
 
-  .campaign{
-    grid-template-columns:1fr;
+    .campaign {
+        grid-template-columns: 1fr;
 
-    margin:0 5vw 80px
-  }
+        margin: 0 5vw 80px;
+    }
 
-  .campaign-image{
-    min-height:420px
-  }
+    .campaign-image {
+        min-height: 420px;
+    }
 
-  .technology{
-    grid-template-columns:1fr;
-    gap:50px
-  }
+    .technology {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
 
-  .about h2{
-    font-size:58px
-  }
+    .about h2 {
+        font-size: 58px;
+    }
 }
-
 
 /* =========================
    MOBILE
 ========================= */
 
-@media(max-width:560px){
+@media (max-width: 560px) {
 
-  .header-actions button:first-child{
-    display:none
-  }
+    .header-actions button:first-child {
+        display: none;
+    }
 
-  /*
-    Hero mobile:
-    paliekame pakankamai aukštą,
-    kad tekstas ir nuotrauka nebūtų
-    suspausti.
-  */
-  .hero{
-    min-height:760px;
-    height:100vh
-  }
+    .hero {
+        min-height: 700px;
+        height: 100svh;
+    }
 
-  .hero-content{
-    margin-left:7vw;
-    width:88%
-  }
+    .hero-content {
+        margin-left: 7vw;
+        width: 88%;
+    }
 
-  .hero h1{
-    font-size:48px;
-    letter-spacing:-3px
-  }
+    .hero h1 {
+        font-size: 48px;
+        letter-spacing: -3px;
+    }
 
-  .hero-copy{
-    font-size:12px
-  }
+    .hero-copy {
+        font-size: 12px;
+    }
 
-  .hero-buttons{
-    flex-direction:column;
-    align-items:flex-start
-  }
+    .hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-  .hero-meta{
-    right:6vw;
-    bottom:8%;
-    font-size:7px
-  }
+    .hero-meta {
+        right: 6vw;
+        bottom: 8%;
+        font-size: 7px;
+    }
 
-  /*
-    Mobile nuotrauka.
-    Čia svarbiausia pozicija:
-    sportininkas išlieka matomas.
-  */
-  .hero-bg{
-    background-position:62% 38%
-  }
+    /*
+       Mobiliajai versijai žmogus
+       labiau paslenkamas į dešinę.
+    */
+    .hero-bg {
+        background-position: 62% center;
+    }
 
-  .feature-bar{
-    grid-template-columns:1fr;
-    padding:0 6vw
-  }
+    .feature-bar {
+        grid-template-columns: 1fr;
+        padding: 0 6vw;
+    }
 
-  .feature-bar article{
-    border-right:0;
-    border-bottom:1px solid var(--line);
+    .feature-bar article {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+        padding-left: 0 !important;
+    }
 
-    padding-left:0!important
-  }
+    .feature-bar article:last-child {
+        border-bottom: 0;
+    }
 
-  .feature-bar article:last-child{
-    border-bottom:0
-  }
+    .products {
+        grid-template-columns: 1fr;
+    }
 
-  .products{
-    grid-template-columns:1fr
-  }
+    .product-image {
+        height: 330px;
+    }
 
-  .product-image{
-    height:330px
-  }
+    .collection {
+        padding-top: 70px;
+    }
 
-  .collection{
-    padding-top:70px
-  }
+    .collection h2 {
+        font-size: 52px;
+    }
 
-  .collection h2{
-    font-size:52px
-  }
+    .campaign-copy {
+        padding: 50px 28px;
+    }
 
-  .campaign-copy{
-    padding:50px 28px
-  }
+    .campaign h2,
+    .technology h2 {
+        font-size: 50px;
+    }
 
-  .campaign h2,
-  .technology h2{
-    font-size:50px
-  }
+    .technology {
+        padding: 75px 6vw;
+    }
 
-  .technology{
-    padding:75px 6vw
-  }
+    .about {
+        padding: 80px 6vw;
+    }
 
-  .about{
-    padding:80px 6vw
-  }
+    .about h2 {
+        font-size: 50px;
+    }
 
-  .about h2{
-    font-size:50px
-  }
-
-  footer{
-    flex-direction:column;
-    gap:12px
-  }
+    footer {
+        flex-direction: column;
+        gap: 12px;
+    }
 }
