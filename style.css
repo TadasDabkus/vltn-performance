@@ -34,12 +34,12 @@ button{
 
 img{
   max-width:100%;
-  display:block;
 }
 
-/* =========================
+
+/* =========================================================
    HEADER
-========================= */
+   ========================================================= */
 
 .site-header{
   height:68px;
@@ -115,14 +115,16 @@ nav a:hover{
   font-size:15px;
 }
 
-/* =========================
+
+/* =========================================================
    HERO
-========================= */
+   ========================================================= */
 
 .hero{
-  min-height:820px;
-  height:100vh;
-  max-height:920px;
+  min-height:0;
+  height:auto;
+  max-height:none;
+  aspect-ratio:1672 / 941;
   position:relative;
   overflow:hidden;
   display:flex;
@@ -132,14 +134,12 @@ nav a:hover{
 .hero-bg{
   position:absolute;
   inset:0;
-
   background-image:url("assets/hero.jpg");
-
-  background-size:cover;
-  background-position:center 42%;
+  background-size:100% 100%;
+  background-position:center;
   background-repeat:no-repeat;
-
   z-index:0;
+  transform:scale(1.001);
 }
 
 .hero-overlay{
@@ -169,7 +169,7 @@ nav a:hover{
   z-index:2;
   margin-left:10.5vw;
   width:560px;
-  padding-top:40px;
+  padding-top:3vw;
 }
 
 .eyebrow{
@@ -221,6 +221,8 @@ nav a:hover{
   font-weight:700;
   border:1px solid var(--line);
   transition:.2s;
+  position:relative;
+  overflow:hidden;
 }
 
 .btn span{
@@ -264,7 +266,7 @@ nav a:hover{
   position:absolute;
   z-index:2;
   right:7vw;
-  bottom:14%;
+  bottom:8%;
   font-size:9px;
   letter-spacing:3px;
   line-height:1.8;
@@ -290,9 +292,10 @@ nav a:hover{
   opacity:.7;
 }
 
-/* =========================
+
+/* =========================================================
    FEATURE BAR
-========================= */
+   ========================================================= */
 
 .feature-bar{
   display:grid;
@@ -339,9 +342,10 @@ nav a:hover{
   margin-top:7px;
 }
 
-/* =========================
+
+/* =========================================================
    COLLECTION
-========================= */
+   ========================================================= */
 
 .collection{
   padding:100px 6vw 110px;
@@ -393,7 +397,8 @@ nav a:hover{
   overflow:hidden;
 }
 
-.text-btn::after{
+.text-btn::after,
+.btn::after{
   content:"";
   position:absolute;
   inset:0;
@@ -402,18 +407,21 @@ nav a:hover{
   transition:transform .35s ease;
 }
 
-.text-btn:hover::after{
+.text-btn:hover::after,
+.btn:hover::after{
   transform:translateX(105%);
 }
 
-/* =========================
+
+/* =========================================================
    PRODUCTS
-========================= */
+   ========================================================= */
 
 .products{
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:14px;
+  gap:20px;
+  width:100%;
 }
 
 .product{
@@ -422,40 +430,26 @@ nav a:hover{
 }
 
 .product-image{
-  /*
-    Svarbiausia dalis:
-    nuotraukos dabar nebeturėtų būti
-    milžiniškos.
-  */
-  height:260px;
-
+  width:100%;
+  height:330px;
   background:#171918;
-
   overflow:hidden;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   border:1px solid rgba(255,255,255,.07);
-
-  transition:
-    border-color .3s ease,
-    transform .3s ease;
+  transition:border-color .3s ease,transform .3s ease;
 }
 
 .product-image img{
   width:100%;
   height:100%;
-
   object-fit:contain;
   object-position:center;
-
   display:block;
-
-  padding:10px;
-
+  padding:6px;
   transition:transform .45s ease;
+  will-change:transform;
 }
 
 .product:hover .product-image{
@@ -464,7 +458,7 @@ nav a:hover{
 }
 
 .product:hover .product-image img{
-  transform:scale(1.025);
+  transform:scale(1.035);
 }
 
 .product-info{
@@ -473,7 +467,6 @@ nav a:hover{
   align-items:flex-start;
   gap:12px;
   padding:15px 2px 0;
-
   transition:transform .3s ease;
 }
 
@@ -489,7 +482,7 @@ nav a:hover{
 
 .product-info p{
   font-size:11px;
-  color:#8f8f8f;
+  color:#a4a4a4;
   margin-top:6px;
   line-height:1.4;
 }
@@ -501,9 +494,10 @@ nav a:hover{
   color:#ddd;
 }
 
-/* =========================
+
+/* =========================================================
    CAMPAIGN
-========================= */
+   ========================================================= */
 
 .campaign{
   margin:0 6vw 110px;
@@ -513,7 +507,7 @@ nav a:hover{
   background:#111;
 
   display:grid;
-  grid-template-columns:1.35fr .65fr;
+  grid-template-columns:1.55fr .75fr;
 
   overflow:hidden;
 
@@ -522,49 +516,57 @@ nav a:hover{
   position:relative;
 }
 
-/*
-  Čia buvo viena pagrindinių problemų:
-  HTML naudoja campaign-photo.jpg,
-  todėl CSS taip pat turi naudoti campaign-photo.jpg.
-*/
+
+/* LEFT IMAGE AREA */
 
 .campaign-image{
+  position:relative;
+
+  width:100%;
+  height:560px;
   min-height:560px;
-
-  background:#151615;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
 
   overflow:hidden;
 
-  position:relative;
+  display:block;
+
+  background:#111313;
+
   isolation:isolate;
 }
 
-/* Soft background layer */
+
+/*
+  Blurred background layer.
+  This fills the whole left block while the
+  actual image stays sharp.
+*/
+
 .campaign-image::before{
   content:"";
 
   position:absolute;
-  inset:-12%;
+  inset:-8%;
 
   background-image:url("assets/campaign-photo.jpg");
 
   background-size:cover;
   background-position:center;
 
-  filter:blur(28px) saturate(.8);
+  filter:blur(22px) saturate(.8);
 
-  opacity:.28;
+  opacity:.30;
 
-  transform:scale(1.12);
+  transform:scale(1.1);
 
   z-index:-2;
 }
 
-/* Dark overlay */
+
+/*
+  Dark overlay for the image.
+*/
+
 .campaign-image::after{
   content:"";
 
@@ -574,61 +576,102 @@ nav a:hover{
   background:
     linear-gradient(
       90deg,
-      rgba(7,8,8,.12),
-      rgba(7,8,8,.02) 48%,
-      rgba(7,8,8,.45)
+      rgba(7,8,8,.08),
+      rgba(7,8,8,.02) 55%,
+      rgba(7,8,8,.30)
     ),
     linear-gradient(
       0deg,
-      rgba(7,8,8,.38),
+      rgba(7,8,8,.25),
       transparent 40%
     );
 
-  z-index:-1;
+  z-index:1;
+
+  pointer-events:none;
 }
 
+
 /*
-  Nuotrauka pati nebėra ištempiama per visą bloką.
-  Ji išlaiko proporcijas ir yra normalaus dydžio.
+  IMPORTANT:
+  The actual campaign image fills the entire
+  left block.
 */
 
 .campaign-image img{
-  width:min(100%,460px);
-  height:auto;
+  position:absolute;
 
-  max-height:470px;
+  inset:0;
 
-  object-fit:contain;
+  width:100%;
+  height:100%;
+
+  max-width:none;
+  max-height:none;
+
+  object-fit:cover;
   object-position:center;
 
   display:block;
 
   padding:0;
 
-  border:1px solid rgba(255,255,255,.14);
+  border:0;
 
-  box-shadow:
-    0 24px 70px rgba(0,0,0,.45);
+  z-index:0;
 
-  transform:translateY(0);
-
-  transition:
-    transform .7s cubic-bezier(.2,.7,.2,1),
-    box-shadow .7s ease;
+  transition:transform .7s cubic-bezier(.2,.7,.2,1);
 }
 
 .campaign:hover .campaign-image img{
-  transform:translateY(-6px);
-  box-shadow:
-    0 32px 85px rgba(0,0,0,.55);
+  transform:scale(1.015);
 }
 
-.campaign-copy{
-  padding:80px 60px;
 
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+/* Campaign decorative marker */
+
+.campaign-mark{
+  position:absolute;
+
+  width:180px;
+  height:180px;
+
+  border:1px solid rgba(207,255,0,.42);
+
+  transform:rotate(45deg);
+
+  right:18%;
+  top:16%;
+
+  z-index:2;
+
+  pointer-events:none;
+}
+
+
+/* Campaign index */
+
+.campaign-index{
+  position:absolute;
+
+  left:32px;
+  bottom:28px;
+
+  z-index:3;
+
+  font-size:8px;
+  letter-spacing:2px;
+
+  color:#aaa;
+}
+
+
+/* RIGHT TEXT AREA */
+
+.campaign-copy{
+  padding:70px 58px 70px 52px;
+
+  position:relative;
 
   background:
     linear-gradient(
@@ -636,10 +679,46 @@ nav a:hover{
       #111212,
       #0d0e0e
     );
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
 
 .lime{
   color:var(--lime);
+}
+
+.campaign-copy::before{
+  content:"03";
+
+  position:absolute;
+
+  right:38px;
+  top:34px;
+
+  color:rgba(207,255,0,.55);
+
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:3px;
+}
+
+.campaign-copy::after{
+  content:"PERFORMANCE / 01";
+
+  position:absolute;
+
+  right:38px;
+  bottom:34px;
+
+  color:#555;
+
+  font-size:8px;
+  letter-spacing:2px;
+
+  transform:rotate(-90deg);
+  transform-origin:right bottom;
 }
 
 .campaign h2,
@@ -652,6 +731,10 @@ nav a:hover{
   margin-bottom:22px;
 }
 
+.campaign h2{
+  font-size:clamp(52px,4.5vw,76px);
+}
+
 .campaign-copy>p:not(.eyebrow){
   color:#aaa;
   font-size:13px;
@@ -660,14 +743,16 @@ nav a:hover{
   margin-bottom:30px;
 }
 
-/* =========================
+
+/* =========================================================
    TECHNOLOGY
-========================= */
+   ========================================================= */
 
 .technology{
   padding:100px 6vw;
 
   display:grid;
+
   grid-template-columns:1fr 1fr;
 
   gap:100px;
@@ -689,9 +774,7 @@ nav a:hover{
 .tech-grid article{
   background:var(--black);
   padding:35px;
-  transition:
-    transform .35s ease,
-    border-color .35s ease;
+  transition:transform .35s ease,border-color .35s ease;
 }
 
 .tech-grid article:hover{
@@ -715,9 +798,10 @@ nav a:hover{
   max-width:420px;
 }
 
-/* =========================
+
+/* =========================================================
    ABOUT
-========================= */
+   ========================================================= */
 
 .about{
   padding:120px 6vw;
@@ -738,12 +822,14 @@ nav a:hover{
   line-height:1.8;
 }
 
-/* =========================
+
+/* =========================================================
    FOOTER
-========================= */
+   ========================================================= */
 
 footer{
   border-top:1px solid var(--line);
+
   padding:28px 6vw;
 
   display:flex;
@@ -751,17 +837,16 @@ footer{
 
   font-size:8px;
   letter-spacing:2px;
-
   color:#777;
 }
 
-/* =========================
-   SCROLL / MOTION
-========================= */
+
+/* =========================================================
+   MOTION / REVEAL
+   ========================================================= */
 
 .reveal{
   opacity:0;
-
   transform:translateY(28px);
 
   transition:
@@ -773,6 +858,11 @@ footer{
   opacity:1;
   transform:none;
 }
+
+
+/* =========================================================
+   SCROLL PROGRESS
+   ========================================================= */
 
 .scroll-progress{
   position:fixed;
@@ -788,8 +878,14 @@ footer{
   transform:scaleX(0);
 
   z-index:100;
+
   pointer-events:none;
 }
+
+
+/* =========================================================
+   CURSOR GLOW
+   ========================================================= */
 
 .cursor-glow{
   position:fixed;
@@ -820,7 +916,10 @@ footer{
   transition:transform .12s ease-out;
 }
 
-/* Hero scan line */
+
+/* =========================================================
+   HERO SCAN LINE
+   ========================================================= */
 
 .hero::after{
   content:"";
@@ -860,9 +959,10 @@ footer{
   }
 }
 
-/* =========================
-   TABLET
-========================= */
+
+/* =========================================================
+   RESPONSIVE — 1100px
+   ========================================================= */
 
 @media(max-width:1100px){
 
@@ -876,7 +976,7 @@ footer{
   }
 
   .product-image{
-    height:280px;
+    height:350px;
   }
 
   .collection{
@@ -885,9 +985,10 @@ footer{
   }
 }
 
-/* =========================
-   TABLET / SMALL DESKTOP
-========================= */
+
+/* =========================================================
+   RESPONSIVE — 900px
+   ========================================================= */
 
 @media(max-width:900px){
 
@@ -900,8 +1001,9 @@ footer{
   }
 
   .hero{
-    min-height:760px;
+    aspect-ratio:auto;
     height:760px;
+    min-height:760px;
   }
 
   .hero-content{
@@ -915,6 +1017,7 @@ footer{
   }
 
   .hero-bg{
+    background-size:cover;
     background-position:center 42%;
   }
 
@@ -942,10 +1045,11 @@ footer{
 
   .products{
     grid-template-columns:1fr 1fr;
+    gap:18px;
   }
 
   .product-image{
-    height:250px;
+    height:320px;
   }
 
   .campaign{
@@ -954,16 +1058,12 @@ footer{
   }
 
   .campaign-image{
-    min-height:460px;
-  }
-
-  .campaign-image img{
-    width:min(70%,460px);
-    max-height:420px;
+    height:500px;
+    min-height:500px;
   }
 
   .campaign-copy{
-    padding:60px 45px;
+    padding:55px 42px;
   }
 
   .technology{
@@ -984,9 +1084,10 @@ footer{
   }
 }
 
-/* =========================
-   MOBILE
-========================= */
+
+/* =========================================================
+   RESPONSIVE — 560px
+   ========================================================= */
 
 @media(max-width:560px){
 
@@ -995,8 +1096,8 @@ footer{
   }
 
   .hero{
-    min-height:720px;
     height:720px;
+    min-height:720px;
   }
 
   .hero-content{
@@ -1041,18 +1142,11 @@ footer{
 
   .products{
     grid-template-columns:1fr;
+    gap:24px;
   }
 
-  /*
-    Mobiliaj produktai dar mažesni,
-    kad nebūtų milžiniškų nuotraukų.
-  */
   .product-image{
-    height:260px;
-  }
-
-  .product-image img{
-    padding:8px;
+    height:340px;
   }
 
   .product-info h3{
@@ -1076,12 +1170,8 @@ footer{
   }
 
   .campaign-image{
-    min-height:400px;
-  }
-
-  .campaign-image img{
-    width:min(78%,360px);
-    max-height:360px;
+    height:420px;
+    min-height:420px;
   }
 
   .campaign-copy{
@@ -1091,6 +1181,11 @@ footer{
   .campaign h2,
   .technology h2{
     font-size:50px;
+  }
+
+  .campaign-copy::before,
+  .campaign-copy::after{
+    display:none;
   }
 
   .technology{
@@ -1111,9 +1206,10 @@ footer{
   }
 }
 
-/* =========================
+
+/* =========================================================
    REDUCED MOTION
-========================= */
+   ========================================================= */
 
 @media(prefers-reduced-motion:reduce){
 
